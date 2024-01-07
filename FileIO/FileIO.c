@@ -5,6 +5,9 @@
 #include <error.h>
 #include <unistd.h>
 
+/* 测试文件描述符的值从3开始 */
+/* 0到2全部被系统单独使用了 */
+
 int main()
 {
 
