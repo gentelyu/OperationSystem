@@ -47,6 +47,9 @@ int main()
 
     /* 父进程阻塞等待回收子进程的资源 */
     /* 返回值是: 回收的子进程ID号. */
+    /* WEXITSTATUS 是一个宏，用于从子进程的终止状态中提取退出状态。
+    在C语言中，当一个子进程终止时，其退出状态会被保存在一个特定的整数值中。
+    WEXITSTATUS 宏可以将这个整数值转换为子进程的退出状态。*/
     int status = 0;
     pid_t waitPid = wait(&status);
     int ret = WEXITSTATUS(status);
