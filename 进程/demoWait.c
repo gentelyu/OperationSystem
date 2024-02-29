@@ -3,7 +3,20 @@
 #include <sys/types.h>
 #include <errno.h>
 #include <wait.h>
+#include <sys/wait.h>
 
+void pr_exit(int status)
+{
+    /* 对子进程不同状态返回值的判断 */
+    if (WIFEXITED(status))
+        printf("子进程正常返回\n");
+    if (WIFSIGNALED(status))
+        printf("子进程异常终止\n");
+    if (WIFSTOPPED(status))
+        printf("子进程当前处于暂停状态\n");
+    if (WIFCONTINUED(status))
+        printf("子进程当前从暂停状态转为正常工作状态\n");
+}
 
 int main()
 {
@@ -61,15 +74,9 @@ int main()
 
     printf("hello world\n");
 
-    /* 对子进程不同状态返回值的判断 */
-    if (WIFEXITED(status))
-        printf("子进程正常返回\n");
-    if (WIFSIGNALED(status))
-        printf("子进程异常终止\n");
-    if (WIFSTOPPED(status))
-        printf("子进程当前处于暂停状态\n");
-    if (WIFCONTINUED(status))
-        printf("子进程当前从暂停状态转为正常工作状态\n");
+    pr_exit(status);
+
+
     #endif
     return 0;
 }
