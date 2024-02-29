@@ -19,17 +19,24 @@ int main()
     {
         /* 子进程 */
         pid_t childPid = getpid();
-        printf("childPid : %dn\n", childPid);
+        printf("childPid : %d\n", childPid);
 
         pid_t parentPid = getppid();
-        printf("parentPid : %dn\n", parentPid);
+        printf("子进程中parentPid : %d\n", parentPid);
 
     }
     else if (pid > 0)
     {
         /* 父进程 */
         pid_t parentPid = getpid();
-        printf("parentPid : %dn\n", parentPid);
+        printf("parentPid : %d\n", parentPid);
+#if 0
+        /* 如果父进程没有退出，那么子进程的ppid则为当前进程的pid */
+        sleep(5);
+#else
+        /* 如果父进程已经退出了，子进程的父进程会被操作系统设置为init进程（PID为1）*/
+
+#endif
     }
 
 
