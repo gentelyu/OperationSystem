@@ -56,7 +56,8 @@ int main()
     printf("waitPid = %d\n", waitPid);
     printf("status = %d\n", status);
     printf("ret = %d\n", ret);
-    
+    /* 这个status是存储子进程推出时的状态的整数值
+        而通过WEXITSTATUS宏可以将具体的退出状态值(ret)提取出来 */
 
     printf("hello world\n");
 
